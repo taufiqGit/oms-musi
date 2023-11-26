@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
-import Parameter from './Parameter';
-import { onSnapshot, collection, getDoc } from 'firebase/firestore';
+import { useEffect, useState } from "react";
+import Parameter from "./Parameter";
+import { onSnapshot, collection, getDoc } from "firebase/firestore";
 
-import db from '../firebase/config';
+import db from "../firebase/config";
 
 const initSpeedometer = {
   bod: 0,
@@ -10,23 +10,23 @@ const initSpeedometer = {
   ct: 0,
   depeth: 0,
   do_: 0,
-  id: '',
+  id: "",
   n: 0,
   no2: 0,
   no3_3: 0,
   orp: 0,
   ph: 0,
   temperature: 0,
-  time: '',
+  time: "",
   tss: 0,
   tur: 0,
-  uuid: '',
+  uuid: "",
 };
 function Monitoring() {
-  const id = '240305005225030';
+  const id = "240305005225030";
   let [storedValues, setStoredValues] = useState([]);
   const fetchdata = async () => {
-    await getDoc(collection(db, 'watermonitoring')).then((querySnapshot) => {
+    await getDoc(collection(db, "watermonitoring")).then((querySnapshot) => {
       const newData = querySnapshot.docs.map((doc) => ({
         ...doc.data(),
         id: doc.id,
@@ -56,83 +56,83 @@ function Monitoring() {
 
   return (
     <div>
-      <div className='p-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 gap-y-10'>
+      <div className="p-8 grid justify-items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 gap-y-10">
         <Parameter
-          name='Temperature'
+          name="Temperature"
           value={dataMonitoring.temperature.toFixed(2)}
           satuan={`\u00B0C`}
           time={dataMonitoring.time}
         />
         <Parameter
-          name='DO'
+          name="DO"
           value={dataMonitoring.do_.toFixed(2)}
-          satuan='mg/L'
+          satuan="mg/L"
           time={dataMonitoring.time}
         />
         <Parameter
-          name='Turbidity'
+          name="Turbidity"
           value={dataMonitoring.tur.toFixed(2)}
-          satuan='NTU'
+          satuan="NTU"
           time={dataMonitoring.time}
         />
         <Parameter
-          name='TDS'
+          name="TDS"
           value={dataMonitoring.ct.toFixed(2)}
-          satuan='ppm'
+          satuan="ppm"
           time={dataMonitoring.time}
         />
         <Parameter
-          name='pH'
+          name="pH"
           value={dataMonitoring.ph.toFixed(2)}
-          satuan='pH'
+          satuan="pH"
           time={dataMonitoring.time}
         />
         <Parameter
-          name='BOD'
+          name="BOD"
           value={dataMonitoring.bod.toFixed(2)}
-          satuan='mg/L'
+          satuan="mg/L"
           time={dataMonitoring.time}
         />
         <Parameter
-          name='COD'
+          name="COD"
           value={dataMonitoring.cod.toFixed(2)}
-          satuan='mg/L'
+          satuan="mg/L"
           time={dataMonitoring.time}
         />
         <Parameter
-          name='TSS'
+          name="TSS"
           value={dataMonitoring.tss.toFixed(2)}
-          satuan='mg/L'
+          satuan="mg/L"
           time={dataMonitoring.time}
         />
         <Parameter
-          name='Amonia'
+          name="Amonia"
           value={dataMonitoring.n.toFixed(2)}
-          satuan='mg/L'
+          satuan="mg/L"
           time={dataMonitoring.time}
         />
         <Parameter
-          name='Nitrat'
+          name="Nitrat"
           value={dataMonitoring.no3_3.toFixed(2)}
-          satuan='mg/L'
+          satuan="mg/L"
           time={dataMonitoring.time}
         />
         <Parameter
-          name='ORP'
+          name="ORP"
           value={dataMonitoring.orp.toFixed(2)}
-          satuan='Mv'
+          satuan="Mv"
           time={dataMonitoring.time}
         />
         <Parameter
-          name='Nitrit'
+          name="Nitrit"
           value={dataMonitoring.no2.toFixed(2)}
-          satuan='mg/L'
+          satuan="mg/L"
           time={dataMonitoring.time}
         />
         <Parameter
-          name='Kedalaman'
+          name="Kedalaman"
           value={dataMonitoring.depeth.toFixed(2)}
-          satuan='M'
+          satuan="M"
           time={dataMonitoring.time}
         />
       </div>
